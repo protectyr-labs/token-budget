@@ -1,0 +1,20 @@
+{
+  "name": "@protectyr-labs/token-budget",
+  "version": "0.1.0",
+  "description": "Smart token allocation for multi-layer LLM prompts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": ["llm", "token", "budget", "context", "prompt-engineering"],
+  "author": "Alexander Madaniev",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "vitest": "^1.6.0"
+  }
+}
