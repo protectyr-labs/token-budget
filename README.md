@@ -9,6 +9,74 @@ history, retrieved documents), you quickly hit token limits. The naive approach 
 everything proportionally — loses critical context. This library lets you define priority
 layers and drops the least important content first, keeping high-priority context intact.
 
+
+## Demo
+
+Run the example to see token budgeting in action:
+
+```bash
+npx tsx examples/basic.ts
+```
+
+```
+=== Token Budget Demo ===
+
+System prompt: 29 tokens
+User context: 125 tokens
+Chat history: 335 tokens
+Retrieved docs: 93 tokens
+Total unbudgeted: 582 tokens
+
+Budget: 500 tokens
+Included: system, user_context, retrieved_docs
+Dropped: chat_history
+Used: 379 / 500 tokens
+```
+
+The system prompt is marked `required: true` so it is always included. User context and
+retrieved docs fit within budget. Chat history (lowest priority) is the first to be dropped,
+keeping the most important context intact.
+
+## Real-World Patterns
+
+### RAG Pipeline
+
+Prioritize the user query and retrieved chunks over boilerplate:
+
+```typescript
+const budget = createBudget(8000, [
+  { name: 'system', priority: 1, required: true },
+  { name: 'retrieved_chunks', priority: 2, maxTokens: 5000 },
+  { name: 'query', priority: 3, required: true },
+]);
+```
+
+### Multi-Turn Chat
+
+Keep recent messages, drop older history first:
+
+```typescript
+const budget = createBudget(4000, [
+  { name: 'system', priority: 1, required: true },
+  { name: 'user_input', priority: 2, required: true },
+  { name: 'last_3_messages', priority: 3, maxTokens: 1500 },
+  { name: 'older_history', priority: 4, maxTokens: 1000 },
+]);
+```
+
+### Agent with Tool Results
+
+Tool outputs can be large -- cap them so the task description is never lost:
+
+```typescript
+const budget = createBudget(6000, [
+  { name: 'system', priority: 1, required: true },
+  { name: 'task_description', priority: 2, required: true },
+  { name: 'tool_results', priority: 3, maxTokens: 3000 },
+  { name: 'scratchpad', priority: 4, maxTokens: 500 },
+]);
+```
+
 ## Install
 
 ```bash
