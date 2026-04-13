@@ -45,6 +45,14 @@ const result = allocate(budget, {
 - **Custom estimator support** -- swap in tiktoken when you need precision
 - **Per-layer caps** -- `maxTokens` prevents any single layer from dominating
 
+## Use Cases
+
+**RAG pipelines** -- System prompt + retrieved documents + user query. Documents are variable-length. Token budget ensures the system prompt is never dropped, documents get priority 2, and chat history is shed first.
+
+**Multi-turn chat** -- As conversation grows, old messages push you over the context limit. Token budget drops the oldest messages while keeping the system prompt and last few turns.
+
+**Agent tool results** -- An agent calls 5 tools. Their combined output exceeds the context window. Token budget keeps the task description and drops the least-relevant tool results.
+
 ## API
 
 | Function | Description |
