@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 220">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="windowGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="layerIncluded" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.08"/>
+    </linearGradient>
+    <linearGradient id="layerDropped" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#64748b" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#64748b" stop-opacity="0.05"/>
+    </linearGradient>
+    <clipPath id="windowClip">
+      <rect x="820" y="22" width="330" height="176" rx="6"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="220" fill="url(#bg)" rx="8"/>
+
+  <!-- Subtle grid pattern -->
+  <g opacity="0.04">
+    <line x1="0" y1="44" x2="1200" y2="44" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="0" y1="88" x2="1200" y2="88" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="0" y1="132" x2="1200" y2="132" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="0" y1="176" x2="1200" y2="176" stroke="#e2e8f0" stroke-width="0.5"/>
+  </g>
+
+  <!-- Left side: Title and subtitle -->
+  <text x="48" y="72" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="38" font-weight="700" fill="#e2e8f0" letter-spacing="-0.5">token-budget</text>
+  <text x="48" y="104" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="16" fill="#94a3b8">Priority-based token allocation for multi-layer LLM prompts.</text>
+  <text x="48" y="128" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="14" fill="#64748b">Drop low-priority layers first when the budget is exceeded.</text>
+
+  <!-- Status pill -->
+  <rect x="48" y="148" width="90" height="24" rx="12" fill="#f59e0b" fill-opacity="0.15" stroke="#f59e0b" stroke-opacity="0.3" stroke-width="1"/>
+  <text x="93" y="164" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" fill="#f59e0b" text-anchor="middle" font-weight="600">TypeScript</text>
+
+  <rect x="148" y="148" width="60" height="24" rx="12" fill="#94a3b8" fill-opacity="0.12" stroke="#94a3b8" stroke-opacity="0.25" stroke-width="1"/>
+  <text x="178" y="164" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle" font-weight="600">MIT</text>
+
+  <rect x="218" y="148" width="110" height="24" rx="12" fill="#94a3b8" fill-opacity="0.12" stroke="#94a3b8" stroke-opacity="0.25" stroke-width="1"/>
+  <text x="273" y="164" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle" font-weight="600">0 dependencies</text>
+
+  <!-- Right side: Context Window visualization -->
+  <!-- Window frame -->
+  <rect x="820" y="22" width="330" height="176" rx="6" fill="url(#windowGrad)" stroke="#475569" stroke-width="1"/>
+
+  <!-- Window header bar -->
+  <rect x="820" y="22" width="330" height="26" rx="6" fill="#334155"/>
+  <rect x="820" y="42" width="330" height="6" fill="#334155"/>
+  <text x="985" y="39" font-family="monospace" font-size="10" fill="#94a3b8" text-anchor="middle" font-weight="600">CONTEXT WINDOW (4096 tokens)</text>
+
+  <!-- Budget limit line -->
+  <line x1="825" y1="152" x2="1145" y2="152" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,3" opacity="0.6"/>
+  <text x="1142" y="148" font-family="monospace" font-size="9" fill="#f59e0b" text-anchor="end" opacity="0.8">budget limit</text>
+
+  <!-- Included layers (above budget line) -->
+  <g clip-path="url(#windowClip)">
+    <!-- Layer 1: System (P1, required) -->
+    <rect x="828" y="52" width="314" height="22" rx="3" fill="url(#layerIncluded)" stroke="#f59e0b" stroke-opacity="0.4" stroke-width="1"/>
+    <circle cx="840" cy="63" r="4" fill="#f59e0b" opacity="0.8"/>
+    <text x="850" y="67" font-family="monospace" font-size="10" fill="#e2e8f0">P1  system</text>
+    <text x="1020" y="67" font-family="monospace" font-size="9" fill="#f59e0b" opacity="0.7">required</text>
+    <rect x="1084" y="56" width="50" height="14" rx="2" fill="#f59e0b" fill-opacity="0.2"/>
+    <rect x="1084" y="56" width="38" height="14" rx="2" fill="#f59e0b" fill-opacity="0.3"/>
+
+    <!-- Layer 2: Context (P2) -->
+    <rect x="828" y="78" width="314" height="22" rx="3" fill="url(#layerIncluded)" stroke="#f59e0b" stroke-opacity="0.3" stroke-width="1"/>
+    <circle cx="840" cy="89" r="4" fill="#f59e0b" opacity="0.6"/>
+    <text x="850" y="93" font-family="monospace" font-size="10" fill="#e2e8f0">P2  context</text>
+    <rect x="1084" y="82" width="50" height="14" rx="2" fill="#f59e0b" fill-opacity="0.2"/>
+    <rect x="1084" y="82" width="45" height="14" rx="2" fill="#f59e0b" fill-opacity="0.3"/>
+
+    <!-- Layer 3: RAG docs (P3) -->
+    <rect x="828" y="104" width="314" height="22" rx="3" fill="url(#layerIncluded)" stroke="#f59e0b" stroke-opacity="0.25" stroke-width="1"/>
+    <circle cx="840" cy="115" r="4" fill="#f59e0b" opacity="0.45"/>
+    <text x="850" y="119" font-family="monospace" font-size="10" fill="#e2e8f0">P3  rag_docs</text>
+    <rect x="1084" y="108" width="50" height="14" rx="2" fill="#f59e0b" fill-opacity="0.2"/>
+    <rect x="1084" y="108" width="30" height="14" rx="2" fill="#f59e0b" fill-opacity="0.3"/>
+
+    <!-- Layer 4: Few-shot (P4) - included but near limit -->
+    <rect x="828" y="130" width="314" height="22" rx="3" fill="url(#layerIncluded)" stroke="#f59e0b" stroke-opacity="0.15" stroke-width="1"/>
+    <circle cx="840" cy="141" r="4" fill="#f59e0b" opacity="0.3"/>
+    <text x="850" y="145" font-family="monospace" font-size="10" fill="#cbd5e1">P4  few_shot</text>
+    <rect x="1084" y="134" width="50" height="14" rx="2" fill="#f59e0b" fill-opacity="0.2"/>
+    <rect x="1084" y="134" width="22" height="14" rx="2" fill="#f59e0b" fill-opacity="0.3"/>
+
+    <!-- Layer 5: History (P5) - DROPPED (below budget line, faded) -->
+    <rect x="828" y="158" width="314" height="22" rx="3" fill="url(#layerDropped)" stroke="#475569" stroke-opacity="0.4" stroke-width="1" opacity="0.4"/>
+    <circle cx="840" cy="169" r="4" fill="#64748b" opacity="0.3"/>
+    <text x="850" y="173" font-family="monospace" font-size="10" fill="#64748b" opacity="0.5" text-decoration="line-through">P5  history</text>
+    <text x="1020" y="173" font-family="monospace" font-size="9" fill="#ef4444" opacity="0.5">dropped</text>
+
+    <!-- Layer 6: Tool output (P6) - DROPPED -->
+    <rect x="828" y="184" width="314" height="22" rx="3" fill="url(#layerDropped)" stroke="#475569" stroke-opacity="0.3" stroke-width="1" opacity="0.25"/>
+    <circle cx="840" cy="195" r="4" fill="#64748b" opacity="0.2"/>
+    <text x="850" y="199" font-family="monospace" font-size="10" fill="#64748b" opacity="0.35" text-decoration="line-through">P6  tool_output</text>
+    <text x="1020" y="199" font-family="monospace" font-size="9" fill="#ef4444" opacity="0.35">dropped</text>
+  </g>
+
+  <!-- Bottom tag -->
+  <text x="48" y="206" font-family="monospace" font-size="11" fill="#475569">protectyr-labs/token-budget</text>
+</svg>
